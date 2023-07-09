@@ -14,7 +14,7 @@ func Unpack(s string) (string, error) {
 	var sb strings.Builder
 	for _, k := range s {
 		if k >= r0 && k <= r9 {
-			if last_rune >= r0 && last_rune <= r9 || last_rune == 0 {
+			if (last_rune >= r0 && last_rune <= r9 || last_rune == 0) && (!(k == r0 && last_rune == r0)) {
 				return "", ErrInvalidString
 			} else if !(last_rune >= r0 && last_rune <= r9) {
 				sb.WriteString(strings.Repeat(string(last_rune), int(k)-int('0')))
