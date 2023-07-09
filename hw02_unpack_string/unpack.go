@@ -8,26 +8,26 @@ import (
 var ErrInvalidString = errors.New("invalid string")
 
 func Unpack(s string) (string, error) {
-	var last_rune rune = 0
-	var r0 rune = '0'
-	var r9 rune = '9'
+	var lastRune rune = 0
+	r0 := rune('0')
+	r9 := rune('9')
 	sb := strings.Builder{}
 
 	for _, k := range s {
 		if k >= r0 && k <= r9 {
-			if (last_rune >= r0 && last_rune <= r9 || last_rune == 0) && !(k == r0 && last_rune == r0) {
+			if (lastRune >= r0 && lastRune <= r9 || lastRune == 0) && !(k == r0 && lastRune == r0) {
 				return "", ErrInvalidString
-			} else if !(last_rune >= r0 && last_rune <= r9) {
-				sb.WriteString(strings.Repeat(string(last_rune), int(k)-int('0')))
+			} else if !(lastRune >= r0 && lastRune <= r9) {
+				sb.WriteString(strings.Repeat(string(lastRune), int(k)-int('0')))
 			}
-		} else if !(last_rune >= r0 && last_rune <= r9 || last_rune == 0) {
-			sb.WriteString(string(last_rune))
+		} else if !(lastRune >= r0 && lastRune <= r9 || lastRune == 0) {
+			sb.WriteString(string(lastRune))
 		}
-		last_rune = k
+		lastRune = k
 	}
 
-	if !(last_rune >= r0 && last_rune <= r9) && last_rune > 0 {
-		sb.WriteString(string(last_rune))
+	if !(lastRune >= r0 && lastRune <= r9) && lastRune > 0 {
+		sb.WriteString(string(lastRune))
 	}
 	return sb.String(), nil
 }
