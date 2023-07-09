@@ -24,10 +24,10 @@ func Unpack(s string) (string, error) {
 		}
 		last_rune = k
 	}
-
-	if !(last_rune >= r0 && last_rune <= r9) {
-		sb.WriteString(string(last_rune))
-	}
-
+	/*
+		if !(last_rune >= r0 && last_rune <= r9) {
+			sb.WriteString(string(last_rune))
+		}
+	*/
 	return sb.String(), nil
 }
