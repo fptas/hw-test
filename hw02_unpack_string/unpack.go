@@ -36,7 +36,6 @@ func Unpack(s string) (string, error) {
 	sb := strings.Builder{}
 	var curRuneType int
 	var lastRuneType int
-
 	for _, k := range s {
 		if k >= '0' && k <= '9' {
 			curRuneType = +1
@@ -53,12 +52,9 @@ func Unpack(s string) (string, error) {
 		} else if lastRuneType < 0 {
 			sb.WriteString(string(lastRune))
 		}
-
 		lastRune = k
 		lastRuneType = curRuneType
-
 	}
-
 	if lastRuneType < 0 {
 		sb.WriteString(string(lastRune))
 	}
