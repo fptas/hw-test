@@ -7,29 +7,30 @@ import (
 
 var ErrInvalidString = errors.New("invalid string")
 
-func Unpack2(s string) (string, error) {
-	var lastRune rune
-	sb := strings.Builder{}
+/*
+	func Unpack2(s string) (string, error) {
+		var lastRune rune
+		sb := strings.Builder{}
 
-	for _, k := range s {
-		if k >= '0' && k <= '9' {
-			if (lastRune >= '0' && lastRune <= '9' || lastRune == 0) && !(k == '0' && lastRune == '0') {
-				return "", ErrInvalidString
-			} else if !(lastRune >= '0' && lastRune <= '9') {
-				sb.WriteString(strings.Repeat(string(lastRune), int(k)-int('0')))
+		for _, k := range s {
+			if k >= '0' && k <= '9' {
+				if (lastRune >= '0' && lastRune <= '9' || lastRune == 0) && !(k == '0' && lastRune == '0') {
+					return "", ErrInvalidString
+				} else if !(lastRune >= '0' && lastRune <= '9') {
+					sb.WriteString(strings.Repeat(string(lastRune), int(k)-int('0')))
+				}
+			} else if !(lastRune >= '0' && lastRune <= '9' || lastRune == 0) {
+				sb.WriteString(string(lastRune))
 			}
-		} else if !(lastRune >= '0' && lastRune <= '9' || lastRune == 0) {
+			lastRune = k
+		}
+
+		if !(lastRune >= '0' && lastRune <= '9') && lastRune > 0 {
 			sb.WriteString(string(lastRune))
 		}
-		lastRune = k
+		return sb.String(), nil
 	}
-
-	if !(lastRune >= '0' && lastRune <= '9') && lastRune > 0 {
-		sb.WriteString(string(lastRune))
-	}
-	return sb.String(), nil
-}
-
+*/
 func Unpack(s string) (string, error) {
 	var lastRune rune
 	sb := strings.Builder{}
