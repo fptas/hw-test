@@ -1,4 +1,4 @@
-module github.com/fptas/hw02_unpack_string
+module github.com/fptas/hw-test/hw02_unpack_string
 
 go 1.20
 
