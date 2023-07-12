@@ -7,19 +7,16 @@ import (
 
 var ErrInvalidString = errors.New("invalid string")
 
-
 func Unpack(s string) (string, error) {
 	var lastRune rune
 	sb := strings.Builder{}
 	var curRuneType int
 	var lastRuneType int
 	for _, k := range s {
+		curRuneType = -1
 		if k >= '0' && k <= '9' {
 			curRuneType = 1
-		} else {
-			curRuneType = -1
 		}
-
 		if curRuneType > 0 {
 			if (lastRuneType >= 0) && !(k == '0' && lastRune == '0') {
 				return "", ErrInvalidString
