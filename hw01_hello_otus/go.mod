@@ -1,4 +1,4 @@
-module github.com/fptas/hw01_hello_otus
+module github.com/fptas/hw-test/hw01_hello_otus
 
 go 1.20
 
