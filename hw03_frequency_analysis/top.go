@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-type str_stat struct {
+type strStat struct {
 	Str   string
 	Count int
 }
@@ -17,9 +17,9 @@ func Top10(s string) []string {
 	for _, v := range strings.Fields(s) {
 		m[v]++
 	}
-	sl := make([]str_stat, 0, 100)
+	sl := make([]strStat, 0, 100)
 	for key, element := range m {
-		sl = append(sl, str_stat{Str: key, Count: element})
+		sl = append(sl, strStat{Str: key, Count: element})
 	}
 	sort.Slice(sl, func(i, j int) bool {
 		switch {
