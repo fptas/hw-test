@@ -11,7 +11,6 @@ type strStat struct {
 }
 
 func Top10(s string) []string {
-
 	m := make(map[string]int)
 
 	for _, v := range strings.Fields(s) {
