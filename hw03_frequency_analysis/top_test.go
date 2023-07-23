@@ -64,19 +64,33 @@ func TestTop10(t *testing.T) {
 			}
 			require.Equal(t, expected, Top10(text))
 		} else {
-			expected := []string{
-				"он",        // 8
-				"а",         // 6
-				"и",         // 6
-				"ты",        // 5
-				"что",       // 5
-				"-",         // 4
-				"Кристофер", // 4
-				"если",      // 4
-				"не",        // 4
-				"то",        // 4
+			tests := []struct {
+				input    string
+				expected []string
+			}{
+				{input: "aa aa bb", expected: []string{"aa", "bb"}},
+				{input: "bb aa aa bb", expected: []string{"aa", "bb"}},
+				{input: "", expected: []string{}},
+				{input: "    ", expected: []string{}},
+				{input: "-", expected: []string{"-"}},
+				{input: text, expected: []string{
+					"он",        // 8
+					"а",         // 6
+					"и",         // 6
+					"ты",        // 5
+					"что",       // 5
+					"-",         // 4
+					"Кристофер", // 4
+					"если",      // 4
+					"не",        // 4
+					"то",        // 4
+				}},
 			}
-			require.Equal(t, expected, Top10(text))
+
+			for _, tc := range tests {
+				tc := tc
+				require.Equal(t, tc.expected, Top10(tc.input))
+			}
 		}
 	})
 }
