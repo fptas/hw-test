@@ -138,6 +138,7 @@ func TestTop10_2(t *testing.T) {
 				"то",        // 4
 			}},
 		}
+
 		for _, tc := range tests {
 			tc := tc
 			t.Run(tc.input, func(t *testing.T) {
