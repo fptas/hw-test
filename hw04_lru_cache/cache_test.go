@@ -49,8 +49,53 @@ func TestCache(t *testing.T) {
 		require.Nil(t, val)
 	})
 
+	t.Run("more than 3", func(t *testing.T) {
+		c := NewCache(3)
+
+		wasInCache := c.Set("aaa", 100)
+		require.False(t, wasInCache)
+
+		wasInCache = c.Set("bbb", 200)
+		require.False(t, wasInCache)
+
+		wasInCache = c.Set("ccc", 300)
+		require.False(t, wasInCache)
+
+		wasInCache = c.Set("ddd", 400)
+		require.False(t, wasInCache)
+
+		// "aaa" удалена из очереди и справочника
+		val, ok := c.Get("aaa")
+		require.False(t, ok)
+		require.Nil(t, val)
+	})
+
 	t.Run("purge logic", func(t *testing.T) {
-		// Write me
+		c := NewCache(3)
+
+		wasInCache := c.Set("aaa", 100)
+		require.False(t, wasInCache)
+
+		wasInCache = c.Set("bbb", 200)
+		require.False(t, wasInCache)
+
+		wasInCache = c.Set("ccc", 300)
+		require.False(t, wasInCache)
+
+		c.Clear()
+
+		// все элементы удалены
+		val, ok := c.Get("aaa")
+		require.False(t, ok)
+		require.Nil(t, val)
+
+		val, ok = c.Get("bbb")
+		require.False(t, ok)
+		require.Nil(t, val)
+
+		val, ok = c.Get("ccc")
+		require.False(t, ok)
+		require.Nil(t, val)
 	})
 }
 
