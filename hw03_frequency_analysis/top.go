@@ -30,7 +30,7 @@ func Top10(s string) []string {
 	if l > 10 {
 		l = 10
 	}
-	rez := make([]string, l)
+	rez := make([]string, 0, l)
 	for _, k := range sl[:l] {
 		rez = append(rez, k.Str)
 	}
