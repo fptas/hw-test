@@ -17,7 +17,7 @@ type ListItem struct {
 }
 
 type list struct {
-	//List // Remove me after realization.
+	// List // Remove me after realization.
 	// Place your code here.
 	front  *ListItem
 	back   *ListItem
@@ -77,7 +77,7 @@ func (l *list) Remove(i *ListItem) {
 }
 
 func (l *list) MoveToFront(i *ListItem) {
-	//return nil
+
 	if l.front == i {
 		return
 	}
