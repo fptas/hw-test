@@ -42,7 +42,7 @@ var text = `Как видите, он  спускается  по  лестни�
 	иногда,  особенно  когда  папа  дома,  он больше любит тихонько
 	посидеть у огня и послушать какую-нибудь интересную сказку.
 		В этот вечер...`
-
+/*
 func TestTop10(t *testing.T) {
 	t.Run("no words in empty string", func(t *testing.T) {
 		require.Len(t, Top10(""), 0)
@@ -95,8 +95,9 @@ func TestTop10(t *testing.T) {
 		}
 	})
 }
-
-func TestTop10_2(t *testing.T) {
+*/
+//nolint:gofumpt
+func TestTop(t *testing.T) {
 	t.Run("no words in empty string", func(t *testing.T) {
 		require.Len(t, Top10(""), 0)
 	})
