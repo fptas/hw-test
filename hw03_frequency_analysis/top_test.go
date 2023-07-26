@@ -62,6 +62,7 @@ func TestTop10(t *testing.T) {
 				"кристофер", // 4
 				"не",        // 4
 			}
+
 			require.Equal(t, expected, Top10(text))
 		} else {
 			tests := []struct {
@@ -99,6 +100,7 @@ func TestTop10_2(t *testing.T) {
 	t.Run("no words in empty string", func(t *testing.T) {
 		require.Len(t, Top10(""), 0)
 	})
+
 	if taskWithAsteriskIsCompleted {
 		t.Run("positive test WithAsterisk", func(t *testing.T) {
 			expected := []string{
