@@ -17,7 +17,7 @@ type ListItem struct {
 }
 
 type list struct {
-	List // Remove me after realization.
+	//List // Remove me after realization.
 	// Place your code here.
 	front  *ListItem
 	back   *ListItem
