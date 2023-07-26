@@ -21,20 +21,17 @@ func Top10(s string) []string {
 		sl = append(sl, strStat{Str: key, Count: element})
 	}
 	sort.Slice(sl, func(i, j int) bool {
-		switch {
-		case sl[i].Count > sl[j].Count:
-			return true
-		case sl[i].Count < sl[j].Count:
-			return false
-		default:
+		if sl[i].Count == sl[j].Count {
 			return sl[i].Str < sl[j].Str
 		}
+		return sl[i].Count > sl[j].Count
 	})
-	rez := make([]string, 0, 10)
-	for i, k := range sl {
-		if i >= 10 {
-			break
-		}
+	l := len(sl)
+	if l > 10 {
+		l = 10
+	}
+	rez := make([]string, l)
+	for _, k := range sl[:l] {
 		rez = append(rez, k.Str)
 	}
 	return rez
