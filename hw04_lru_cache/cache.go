@@ -23,7 +23,7 @@ func (c *lruCache) Set(key Key, value interface{}) bool {
 		c.queue.MoveToFront(pnl) // и переведем элемент в начало списка
 	} else { // если не было в спарвочнике
 		pnl := c.queue.PushFront(value) // добавим в начало
-		c.items[key] = pnl // добавим ключ с справочник
+		c.items[key] = pnl //nolint:gofmt,gofumpt,nolintlint // добавим ключ с справочник
 		if c.queue.Len() > c.capacity { // если длина списка превышена
 			last := c.queue.Back()
 			c.queue.Remove(last) // удалим послеждний элемент
