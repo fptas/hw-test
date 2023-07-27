@@ -36,7 +36,6 @@ func (c *lruCache) Set(key Key, value interface{}) bool {
 				delete(c.items, k)
 				break
 			}
-
 		}
 	}
 	return ok
