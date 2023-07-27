@@ -18,7 +18,7 @@ type lruCache struct {
 
 func (c *lruCache) Set(key Key, value interface{}) bool {
 	pnl, ok := c.items[key] // получить указатель на значение заданного ключа
-	if ok { // если в пате был указатель
+	if ok { //nolint:all // если в мапе был указатель
 		pnl.Value = value  // обновим значение в элементе списка
 		c.queue.MoveToFront(pnl) // и переведем элемент в начало списка
 	} else { // если не было в спарвочнике
