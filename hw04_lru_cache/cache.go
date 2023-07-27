@@ -9,14 +9,55 @@ type Cache interface {
 }
 
 type lruCache struct {
-	Cache // Remove me after realization.
+	// Cache // Remove me after realization.
 
 	capacity int
 	queue    List
 	items    map[Key]*ListItem
 }
 
+func (c *lruCache) Set(key Key, value interface{}) bool {
+	pnl, ok := c.items[key] // получить указатель на значение заданного ключа
+	if ok { //nolint:all // если в мапе был указатель
+		pnl.Value = value  // обновим значение в элементе списка
+		c.queue.MoveToFront(pnl) // и переведем элемент в начало списка
+	} else { // если не было в спарвочнике
+		pnl := c.queue.PushFront(value) // добавим в начало
+		c.items[key] = pnl //nolint:gofmt,gofumpt,nolintlint // добавим ключ с справочник
+		if c.queue.Len() > c.capacity { // если длина списка превышена
+			last := c.queue.Back()
+			c.queue.Remove(last) // удалим послеждний элемент
+			// найдем ключ, в котром лежит указатель на послежний элемент очереди.
+			// в цикле. а как иначе?
+			for k, v := range c.items {
+				if v != last {
+					continue
+				}
+				delete(c.items, k) // удалим ключ из справочника для удаляемого элемента списка
+				break
+			}
+		}
+	}
+	return ok
+}
+
+func (c *lruCache) Get(key Key) (interface{}, bool) {
+	pnl, ok := c.items[key] // попытаемся получит значение спраовчника
+	if ok { //nolint:gofmt,gofumpt,nolintlint // если было, вернем
+		return pnl.Value, true
+	}
+	return nil, false // если не было, возвратим ничто
+}
+
+func (c *lruCache) Clear() {
+	// надеюсь, сборщик сделает своё дело ))
+	// заменим объекты новыми
+	c.queue = NewList()
+	c.items = make(map[Key]*ListItem, c.capacity)
+}
+
 func NewCache(capacity int) Cache {
+	// инициализация
 	return &lruCache{
 		capacity: capacity,
 		queue:    NewList(),
