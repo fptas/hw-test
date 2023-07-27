@@ -53,7 +53,6 @@ func (c *lruCache) Clear() {
 	// надеюсь, сборщик сделает своё дело ))
 	c.queue = NewList()
 	c.items = make(map[Key]*ListItem, c.capacity)
-
 }
 
 func NewCache(capacity int) Cache {

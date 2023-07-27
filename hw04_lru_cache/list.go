@@ -42,7 +42,6 @@ func (l *list) PushFront(v interface{}) *ListItem {
 	if l.front == nil {
 		l.front = pnl
 		l.back = pnl 
-
 	} else {
 		pnl.Next = l.front
 		l.front.Prev = pnl
@@ -58,7 +57,6 @@ func (l *list) PushBack(v interface{}) *ListItem {
 	if l.back == nil {
 		l.front = pnl
 		l.back = pnl 
-
 	} else {
 		pnl.Prev = l.back
 		l.back.Next = pnl
