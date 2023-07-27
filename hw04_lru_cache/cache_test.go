@@ -50,6 +50,7 @@ func TestCache(t *testing.T) {
 	})
 
 	t.Run("more than 3", func(t *testing.T) {
+		// тест вытеснения самого старого при превышении размера списка
 		c := NewCache(3)
 
 		wasInCache := c.Set("aaa", 100)
