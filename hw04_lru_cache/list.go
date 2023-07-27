@@ -56,7 +56,7 @@ func (l *list) PushBack(v interface{}) *ListItem {
 	pnl := &nl
 	if l.back == nil {
 		l.front = pnl
-		l.back = pnl //nolint:gofmt
+		l.back = pnl	//nolint:all //abra-kadabra
 	} else {
 		pnl.Prev = l.back
 		l.back.Next = pnl
