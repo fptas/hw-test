@@ -30,7 +30,7 @@ func Top10(s string) []string {
 	if l > 10 {
 		l = 10
 	}
-	rez := make([]string, 0, l)  // новый слайс строк нужной длины
+	rez := make([]string, 0, l)  //nolint:all   // новый слайс строк нужной длины
 	for _, k := range sl[:l] {
 		rez = append(rez, k.Str) // переложим результирующие строки из слайса структур в слайс строк
 	}
