@@ -43,7 +43,7 @@ func (c *lruCache) Set(key Key, value interface{}) bool {
 
 func (c *lruCache) Get(key Key) (interface{}, bool) {
 	pnl, ok := c.items[key] // попытаемся получит значение спраовчника
-	if ok { // если было, вернем
+	if ok { //nolint:gofmt,gofumpt,nolintlint // если было, вернем
 		return pnl.Value, true
 	}
 	return nil, false // если не было, возвратим ничто
