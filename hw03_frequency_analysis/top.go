@@ -16,7 +16,7 @@ func Top10(s string) []string {
 	for _, v := range strings.Fields(s) {
 		m[v]++
 	}
-	sl := make([]strStat, 0, 100)
+	sl := make([]strStat, 0)
 	for key, element := range m {
 		sl = append(sl, strStat{Str: key, Count: element})
 	}

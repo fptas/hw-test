@@ -42,61 +42,7 @@ var text = `Как видите, он  спускается  по  лестни�
 	иногда,  особенно  когда  папа  дома,  он больше любит тихонько
 	посидеть у огня и послушать какую-нибудь интересную сказку.
 		В этот вечер...`
-/*
-func TestTop10(t *testing.T) {
-	t.Run("no words in empty string", func(t *testing.T) {
-		require.Len(t, Top10(""), 0)
-	})
 
-	t.Run("positive test", func(t *testing.T) {
-		if taskWithAsteriskIsCompleted {
-			expected := []string{
-				"а",         // 8
-				"он",        // 8
-				"и",         // 6
-				"ты",        // 5
-				"что",       // 5
-				"в",         // 4
-				"его",       // 4
-				"если",      // 4
-				"кристофер", // 4
-				"не",        // 4
-			}
-
-			require.Equal(t, expected, Top10(text))
-		} else {
-			tests := []struct {
-				input    string
-				expected []string
-			}{
-				{input: "aa aa bb", expected: []string{"aa", "bb"}},
-				{input: "bb aa aa bb", expected: []string{"aa", "bb"}},
-				{input: "", expected: []string{}},
-				{input: "    ", expected: []string{}},
-				{input: "-", expected: []string{"-"}},
-				{input: text, expected: []string{
-					"он",        // 8
-					"а",         // 6
-					"и",         // 6
-					"ты",        // 5
-					"что",       // 5
-					"-",         // 4
-					"Кристофер", // 4
-					"если",      // 4
-					"не",        // 4
-					"то",        // 4
-				}},
-			}
-
-			for _, tc := range tests {
-				tc := tc
-				require.Equal(t, tc.expected, Top10(tc.input))
-			}
-		}
-	})
-}
-*/
-//nolint:gofumpt
 func TestTop(t *testing.T) {
 	t.Run("no words in empty string", func(t *testing.T) {
 		require.Len(t, Top10(""), 0)
