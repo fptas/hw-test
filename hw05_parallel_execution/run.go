@@ -18,8 +18,8 @@ func Run(tasks []Task, n, m int) error {
 		n = l
 	}
 	wg := sync.WaitGroup{}
-	mu := sync.Mutex{} // один мьютекс на два блока кода, 
-	// т.к. в первом блоке читается также переменная, которая изменяется во втором
+	mu := sync.Mutex{}  //nolint:gofmt,gofumpt,nolintlin // один мьютекс на два блока кода, 
+	//nolint:gofmt,gofumpt,nolintlin // т.к. в первом блоке читается также переменная, которая изменяется во втором
 
 	wg.Add(n)
 	for i := 0; i < n; i++ {
