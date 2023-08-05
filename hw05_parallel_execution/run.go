@@ -18,14 +18,14 @@ func Run(tasks []Task, n, m int) error {
 		n = l
 	}
 	wg := sync.WaitGroup{}
-	mu := sync.Mutex{}  //nolint:gofmt,gofumpt,nolintlin // один мьютекс на два блока кода, 
-	//nolint:gofmt,gofumpt,nolintlin // т.к. в первом блоке читается также переменная, которая изменяется во втором
+	mu := sync.Mutex{} //nolint:gci,nolintlin // один мьютекс на два блока кода,
+	//nolint:gci,nolintlin // т.к. в первом блоке читается также переменная, которая изменяется во втором
 
 	wg.Add(n)
 	for i := 0; i < n; i++ {
 		go func() {
 			for {
-				mu.Lock()  // залочим код перед чтением управляющих переменных, 
+				mu.Lock() // залочим код перед чтением управляющих переменных,
 				// т.к. думаю читать нужно тоже внутри лока, иначе можем получить "грязное чтение"
 				if errCount >= m || curTask >= len(tasks) { // если число ошибок достигло лимита или все задачи обработаны
 					mu.Unlock() // разблокировать и прекратить цикл обработки
@@ -36,7 +36,7 @@ func Run(tasks []Task, n, m int) error {
 				mu.Unlock()
 
 				err := tasks[myCurTask]() // запустить выполнние своей задачи
-				if err != nil { // если была ошибка, безопасно увеличть счетчик ошибок
+				if err != nil {           // если была ошибка, безопасно увеличть счетчик ошибок
 					mu.Lock()
 					errCount++
 					mu.Unlock()
@@ -46,8 +46,7 @@ func Run(tasks []Task, n, m int) error {
 		}()
 	}
 	wg.Wait() // ждать окончание всех горутин
-	
-	
+
 	if errCount >= m {
 		return ErrErrorsLimitExceeded
 	}
