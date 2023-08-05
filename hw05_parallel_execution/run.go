@@ -42,12 +42,13 @@ func Run(tasks []Task, n, m int) error {
 					mu.Unlock()
 				}
 			}
-			wg.Done() // ждать окончание всех горутин
+			wg.Done() // сообщить об остановке данной горутины
 		}()
 	}
-	wg.Wait() // <==
-
-	if errCount == m {
+	wg.Wait() // ждать окончание всех горутин
+	
+	
+	if errCount >= m {
 		return ErrErrorsLimitExceeded
 	}
 	return nil
