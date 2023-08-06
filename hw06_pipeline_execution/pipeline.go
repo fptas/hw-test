@@ -12,7 +12,7 @@ func ExecutePipeline(in In, done In, stages ...Stage) Out {
 	monitor := func(in In, done In, stage Stage) Out {
 		myOut := make(Bi)
 		stageOut := stage(myOut)
-		go func() { 
+		go func() { //nolint:gofmt
 /* горутина слушает канал предыдущего стейджа и передает следующему
 если done закрывается, то закрывает свой выходной канал,
 что приведет впоследствии к прекращению работы последующего стейджа*/
