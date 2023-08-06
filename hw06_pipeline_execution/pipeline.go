@@ -9,14 +9,12 @@ type (
 type Stage func(in In) (out Out)
 
 func ExecutePipeline(in In, done In, stages ...Stage) Out {
-
 	monitor := func(in In, done In, stage Stage) Out {
 		myOut := make(Bi)
-
 		stageOut := stage(myOut)
-
 		go func() { /* горутина слушает канал предыдкущего стейджа и передает следующему
-			если done закрывается, то закрывает свой выходной канал, что приведет впоследствии к прекращению работы последующего стейджа
+			если done закрывается, то закрывает свой выходной канал,
+			что приведет впоследствии к прекращению работы последующего стейджа
 			*/
 			defer close(myOut)
 			for {
@@ -29,10 +27,8 @@ func ExecutePipeline(in In, done In, stages ...Stage) Out {
 					} else {
 						return
 					}
-
 				}
 			}
-
 		}()
 		return stageOut
 	}
